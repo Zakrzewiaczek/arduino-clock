@@ -8,7 +8,8 @@ How to use program?
      If it's night: turn on light.
    
    [If you want to set the clock to change brightness at fixed times]
-
+      Add '//' at the beginning of line 8
+      
    
 
   If the clock does not show the time, try reloading the program.
