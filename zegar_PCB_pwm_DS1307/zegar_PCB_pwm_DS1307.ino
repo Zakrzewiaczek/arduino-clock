@@ -10,7 +10,7 @@ tmElements_t tm;
 
 // GDY AUTOMATYCZNA JASNOSC
 const int jasnosc[2] = {200, 2000}; //us
-const int zakresy[2] = {630, 700}; //nizsza, wyzsza
+int zakresy[2] = {520, 700}; //nizsza, wyzsza
 unsigned const PWM_time = 13; //us, nie dotyczy, kiedy #define kalibracja_jasnosci
 
 //GDY JASNOŚĆ GODZINOWA
@@ -89,6 +89,16 @@ void setup() {
   #ifdef kalibracja_jasnosci
     Serial.begin(9600);
   #endif
+
+  int w = 0;
+  for(int i = 1; i <= 5; i++)
+  {
+    w += analogRead(A7);
+    delay(500);
+  }
+
+  w /= 5;
+  zakresy[0] = w + 25;
 
   ktora_godzina();
   brightness();
@@ -189,8 +199,14 @@ void brightness()
     //Do zrobienia
     int a = analogRead(A7);
 
-    delay_time = (a < zakresy[0]) ? 2000 : 0;
+    delay_time = (a > zakresy[0]) ? 0 : 2000;
     repeating = (delay_time == 2000) ? 63 : 2010;
+
+    #ifdef kalibracja_jasnosci
+      Serial.print(zakresy[0]);
+      Serial.print(" | ");
+      Serial.println(a);
+    #endif
   #endif
 }
 
