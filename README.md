@@ -12,3 +12,6 @@ How to make this?
 If code or something else is not working, make new Issue. I will correct code ASAP.
 
 Enjoy :)
+
+PS When you try to translate comments in the Arduino program (*.ino), 
+   the comments are written in Polish [try using Google Translate, it will help you understand ;) ]
